@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <link rel="stylesheet" href="../static/css/nes.css">
+    <link rel="stylesheet" href="../static/css/grid.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body class="authorization">
+    <div class="container">
+        <div class="row">
+            <div class="twelve eight-md six-lg offset-md-by-two offset-lg-by-three columns">
+                <main class="nes-container with-title">
+                    <p class="title">Sign up</p>
+                    <div class="row">
+                        <div class="twelve columns">
+                            <header class="authorization__header">
+                                <h2>Forum</h2>
+                                <p>Join the forum to unlock true power of community.</p>
+                            </header>
+                        </div>
+                    </div>
+        
+                    <div class="row">
+                        <div class="twelve columns">
+                            <form method="POST" class="authorization__forum">
+                                <div class="nes-field authorization__field">
+                                    <label for="name_field">Username</label>
+                                    <input type="text" id="name_field" name="username" class="nes-input" value="{{.Username}}" required>
+                                </div>    
+                                <div class="nes-field authorization__field">
+                                    <label for="name_field">Email</label>
+                                    <input type="email" id="email_field" name="email" class="nes-input" value="{{.Email}}" required>
+                                </div>      
+                                <div class="nes-field authorization__field">
+                                    <label for="password_field">Password</label>
+                                    <input type="password" id="password_field" name="password" value="{{.Password}}" class="nes-input" required>
+                                </div>    
+                                <button type="submit" class="nes-btn is-primary authorization__submit">Sign up</button>   
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="twelve columns">
+                            <span class="authorization__breadcrumb">or</span> 
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="twelve columns">
+                            <a class="authorization__link" href="login.html">Login</a>    
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

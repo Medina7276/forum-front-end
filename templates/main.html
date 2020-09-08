@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <link rel="stylesheet" href="../static/css/nes.css">
+    <link rel="stylesheet" href="../static/css/grid.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <title>Document</title>
+</head>
+<body class="main">
+    <!-- PAGE HEADER -->
+    <header class="main__header">
+        <div class="container">
+            <div class="row">
+                <div class="nine columns">
+                    <h1># Forum</h1>
+                </div>
+                <div class="three columns">
+                    <nav class="nav">
+                        {{ if .IsLogin }}
+                            <button type="button" href="signup.html" class="nes-btn is-primary">Sing Up</button>
+                            <button type="button" href="login.html" class="nes-btn is-sucess">Login</button>
+                        {{ else }}
+                            <div class="nav__user">
+                                    <div class="nav__dropdown dropdown">
+                                        <div class="dropdown__box">
+                                            <img data-src="https://github.com/medina7276.png?size=64" alt="Me" class="nes-avatar is-rounded" src="https://github.com/medina7276.png?size=64"> 
+                                            <h3 class="dropdown__name">{{.User.Username}}</h3>
+                                        </div>
+                                        
+                                        <div class="dropdown-content">
+                                        <a href="#" class="dropdown__item">My Posts</a>
+                                        <a href="#" class="dropdown__item">My Likes</a>
+                                        <section class="dropdown__item">
+                                            <button type="button" class="nes-btn is-error" onclick="document.getElementById('dialog-rounded').showModal();">
+                                            Logout
+                                            </button>
+                                            <dialog class="nes-dialog is-rounded" id="dialog-rounded">
+                                            <form method="dialog">
+                                                <p class="title">Are you sure?</p>
+                                                <p>Ohh, no..:(.</p>
+                                                <menu class="dialog-menu">
+                                                <button class="nes-btn">Cancel</button>
+                                                <button class="nes-btn is-primary">Confirm</button>
+                                                </menu>
+                                            </form>
+                                            </dialog>
+                                        </section>
+                                        </div>
+                                    </div>
+                                </div>  
+                            {{ end }}                         
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- PAGE MAIN -->
+    <main class="post">
+        <header class="post__header">
+            <div class="container">
+                <div class="row">
+                    <div class="six columns">
+                        <h2 class="post__title"><a href="#">#</a>Posts</h2>
+                    </div>
+                    <div class="three columns">
+                        <section>
+                            <button type="button" class="nes-btn is-primary" onclick="document.getElementById('dialog').showModal();">
+                              Create Post
+                            </button>
+
+                            <dialog class="nes-dialog" id="dialog">
+                                <form method="dialog">
+                                    <div class="nes-field mb-15">
+                                        <label for="title_field">Title</label>
+                                        <input type="text" id="title_field" class="nes-input">
+                                    </div>
+                                    <label for="default_select">Category</label>
+                                    <div class="nes-select mb-15">
+                                        <select required id="default_select">
+                                            <option value="" disabled selected hidden>Select...</option>
+                                            <option value="Movie">Movies</option>
+                                            <option value="Music">Music</option>
+                                            <option value="Coding">Coding</option>
+                                            <option value="Games">Games</option>
+                                            <option value="Books">Books</option>
+                                        </select>
+                                    </div>
+                                    <label for="textarea_field">Content</label>
+                                    <textarea id="textarea_field" class="nes-textarea mb-15"></textarea>  
+                                    <label class="nes-btn mb-15">
+                                        <span>Choose image</span>
+                                        <input type="file">
+                                      </label>       
+                                    <menu class="dialog-menu" style="text-align: center;">
+                                        <button class="nes-btn">Cancel</button>
+                                        <button class="nes-btn is-primary" type="submit">Confirm</button>
+                                    </menu>
+                                </form>
+                            </dialog>
+                          </section>
+                    </div>
+                    <div class="three columns">
+                        <div class="nes-select">
+                            <select required id="default_select">
+                                <option value="" disabled selected hidden>Category</option>
+                                <option value="Movie">Movies</option>
+                                <option value="Music">Music</option>
+                                <option value="Coding">Coding</option>
+                                <option value="Games">Games</option>
+                                <option value="Books">Books</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="container">
+
+            {{range .Posts }}
+                <div class="row">
+                    <div class="columns">
+                        <article class="nes-container with-title post__item">
+                            <p class="title posts__title">{{.User.Username}}</p>
+                            <h2>{{ .Title }}</h2>
+                            <p class="posts__content">{{ .Content }}</p>
+                            <img src="../static/assets/lost-heaven-2.jpg" alt="" class="post__img">
+                            <div class="post__footer">
+                                    {{ $likes, $unlikes := .GetVotesCount }}
+                                        <button class="post__reaction nes-btn is-success"><i class="nes-icon like"></i>{{ $likes }}</button>
+                                        <button class="post__reaction nes-btn is-error" href="#"><i class="nes-icon like like_reverse"></i> {{ $unlikes }}</button>
+                                    {{ end }}
+                            <div class="nes-balloon from-right nes-pointer post__comment">
+                                <p>Comments({{ .GetCountOfComments }})</p>
+                            </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            {{ end }}
+            
+            <!-- <div class="row">
+                <div class="columns">
+                    <article class="nes-container with-title post__item">
+                        <p class="title posts__title">Author: Joe Barbaro</p>
+                        <h2>Mr.Salieri sends his regards</h2>
+                        <p class="posts__content">Good morning. Today was one unfinished business.</p>
+                        <img src="../static/assets/lost-heaven-2.jpg" alt="" class="post__img">
+                        <div class="post__footer">
+                            <button class="post__reaction nes-btn is-success"><i class="nes-icon like"></i> 17</button>
+                            <button class="post__reaction nes-btn is-error" href="#"><i class="nes-icon like like_reverse"></i> 2</button>
+                            <div class="nes-balloon from-right nes-pointer post__comment">
+                                <p>Comments(10)</p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div> -->
+            
+            <!-- <div class="row">
+                <div class="columns">
+                    <article class="nes-container with-title post__item">
+                        <p class="title posts__title">Author: Tommy Angelo</p>
+                        <h2>Lost Heaven, 1930</h2>
+                        <p class="posts__content">The city of Lost Heaven got hit hard by The Great Depression, and the advent of Prohibition in America means lucrative business opportunities for mobsters. The Salieri and Morello crime families vie for control over Lost Heaven, even as its few honest policemen scramble to maintain order.</p>
+                        <img src="../static/assets/lost-heaven.jpg" alt="" class="post__img">
+                        <div class="post__footer">
+                            <button class="post__reaction nes-btn is-success"><i class="nes-icon like"></i> 17</button>
+                            <button class="post__reaction nes-btn is-error" href="#"><i class="nes-icon like like_reverse"></i> 2</button>
+                            <div class="nes-balloon from-right nes-pointer post__comment">
+                                <p>Comments(10)</p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div> -->
+            <div class="row">
+                <div class="columns">
+                    <a href="" style="text-align: center; display: block;">Load more</a>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

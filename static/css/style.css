@@ -1,0 +1,95 @@
+@import 'dropdown.css';
+
+.authorization {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.authorization__header {
+    margin-bottom: 1.5rem;
+}
+
+.authorization__field {
+    margin-bottom: 1.5rem;
+}
+
+.authorization__submit {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1rem;
+    margin-top: 1.8rem;
+}
+
+.authorization__breadcrumb {
+    margin-bottom: 0.5rem;
+}
+.authorization__breadcrumb,
+.authorization__link {
+    display: block;
+    text-align: center;    
+}
+
+.main {
+    padding-bottom: 2em;
+}
+
+.main__header {
+    display: block;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background-color: white;
+    border-bottom: 4px solid #D3D3D3;
+}
+
+.nav {
+    padding-top: 1em;
+}
+
+.post {
+    padding-top: 2em;
+}
+
+.post__title {
+    margin-bottom: 1em;
+}
+
+.post__header {
+    margin-bottom: 1.5em;
+}
+
+.post__footer {
+    margin-top: 2em;
+}
+
+.post__item {
+    margin-bottom: 2em;
+}
+
+.post__reaction {
+    margin-right: 0.2em;
+}
+
+.post__reaction .nes-icon {
+    margin-bottom: 7px;
+    margin-right: 0;
+    transform: scale(1.5);
+}
+
+.post__img {
+    max-width: 60%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.post__comment {
+    padding: 0.5rem 1rem;
+}
+
+.mb-15 {
+    margin-bottom: 1.5em;
+}
